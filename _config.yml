@@ -1,2 +1,6 @@
 theme: jekyll-theme-minimal
 title: jeongjinyeong's homepage
+collections:
+  til:
+    output: true
+    permalink: /til/:title/
