@@ -6,3 +6,33 @@
 .post-content p {
   text-indent: 1em;
 }
+
+.wrapper.subpage {
+  width: auto;
+  max-width: 720px;
+
+  header {
+    float: none;
+    position: static;
+    width: auto;
+    margin-bottom: 30px;
+
+    h1 {
+      font-size: 1.3em;   // 상단 헤더용으로 축소
+      margin-bottom: 0;
+    }
+    p { display: none; }  // description도 서브페이지에선 숨김 (원하면 이 줄 삭제)
+  }
+
+  section {
+    float: none;
+    position: static;
+    width: auto;
+  }
+
+  footer {
+    float: none;
+    position: static;
+    width: auto;
+  }
+}

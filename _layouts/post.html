@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<small>{{ page.date | date: "%Y-%m-%d" }}</small>
+<h1>{{ page.title }}</h1>
+
+{% assign post_author = page.author | default: site.author %}
+{% if post_author %}
+  <p class="view">by {{ post_author }}</p>
+{% endif %}
+
+{{ content }}
+
+{% if page.tags != empty %}
+  <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
+{% endif %}
