@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "파이썬의 call by object reference — mutable/immutable과 얕은/깊은 복사까지"
+title: "Python call by object reference — mutable/immutable과 Shallow Copy/Deep Copy"
 date: 2026-09-09
 ---
 
-## python call by object reference
+## Python call by object reference
 
 python은 매개변수를 넘겨받아 처리할 때 call by object reference를 한다. 그렇다면 call by object reference가 뭘까?
 
@@ -41,7 +41,7 @@ def f(lst):
     lst = []          # 매개변수 재바인딩 → 호출자에 안 보임
 ```
 
-## 얕은 복사와 깊은 복사
+## 얕은 복사(Shallow Copy)와 깊은 복사(Deep Copy)
 
 조금 더 나아가서 얕은 복사와 깊은 복사에 대해 알아보자. 가변 객체 리스트로 설명을 이어가겠다.
 
