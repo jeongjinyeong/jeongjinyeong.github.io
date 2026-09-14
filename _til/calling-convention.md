@@ -207,7 +207,7 @@ caller에서 설명한 것과 동일하게 callee를 호출한 caller의 프레�
   | result             |  [caller ebp-4]   caller의 프레임 (result는 아직 미정)
   | localCaller2 = 999 |  [caller ebp-8]
   | localCaller1 = 99  |  [caller ebp-12]
-  | (padding)          |  [caller ebp-16]  <- push 하기 전 caller의 ESP
+  | (padding)          |  [caller ebp-16]
   +--------------------+
   | 8   (a8)           |  [ebp+36]         가장 먼저 push
   | 7   (a7)           |  [ebp+32]
@@ -588,7 +588,7 @@ callee:
   | result             |  [caller rbp-4]   caller의 프레임
   | localCaller2 = 999 |  [caller rbp-8]
   | localCaller1 = 99  |  [caller rbp-12]
-  | (padding)          |  [caller rbp-16]  <- add rsp, 16 완료 후 RSP
+  | (padding)          |  [caller rbp-16]
   +--------------------+
   | 8   (a8)           |  [rbp+24]         가장 먼저 push. 칸이 8바이트
   | 7   (a7)           |  [rbp+16]         스택 인자 2개(16바이트): caller가 push, caller가 정리
