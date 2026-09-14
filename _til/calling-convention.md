@@ -81,7 +81,9 @@ date: 2026-09-14
 
 ### 운영체제·컴파일러에 따른 차이
 
-아키텍처가 같아도 규약은 다를 수 있다. 같은 x86-64에서 Windows는 Microsoft x64 규약을, Linux·macOS 등 Unix 계열은 System V AMD64 ABI를 사용한다. 이 차이를 결정하는 것은 컴파일러가 아니라 대상 운영체제의 ABI다.(`Application Binary Interface` 컴파일된 바이너리끼리 맞물리기 위한 약속 / 바이너리 레벨에서의 API와 대응되는 개념이라고 생각하자.) MSVC는 Windows를 대상으로 하므로 MS x64를 따르고, Linux용 gcc는 System V를 따르며, Windows용 gcc(MinGW-w64)는 MS x64를 따른다.
+아키텍처가 같아도 규약은 다를 수 있다. 같은 x86-64에서 Windows는 Microsoft x64 규약을, Linux·macOS 등 Unix 계열은 System V AMD64 ABI를 사용한다. 이 차이를 결정하는 것은 컴파일러가 아니라 대상 운영체제의 ABI다. MSVC는 Windows를 대상으로 하므로 MS x64를 따르고, Linux용 gcc는 System V를 따르며, Windows용 gcc(MinGW-w64)는 MS x64를 따른다.
+
+※ ABI: 컴파일된 바이너리끼리 맞물리기 위한 약속. 소스 코드 수준의 API에 대응하는 바이너리 수준의 규격이라고 생각하면 된다.
 
 ※ 같은 이름의 규약을 컴파일러마다 다르게 구현하기도 한다. x86의 fastcall이 대표적인데, MSVC는 처음 두 인자를 ECX, EDX로 전달하지만 Borland 계열 컴파일러는 EAX, EDX, ECX를 사용한다.
 
