@@ -158,7 +158,7 @@ caller:
     mov     DWORD PTR [ebp-4], eax  ; 반환값(EAX)을 result에 저장
     nop
     leave                           ; mov esp, ebp / pop ebp
-    ret
+    ret                             ; pop eip
 ```
 
 우선 호출자에 해당하는 caller를 보면 자신이 호출됐을 때(caller도 누군가에게 호출당할 거니까) 기존의 프레임 포인터 레지스터(스택 프레임의 밑바닥으로 `ebp`를 말한다.)를 자신이 끝날 때 복구시키기 위해 스택에 저장해두고, 새로운 프레임 포인터 레지스터를 만들기 위해 현재 스택의 top 위치로 `ebp`를 이동시킨다. `mov` 명령어의 동작은 뒤의 값을 앞에 저장한다.
