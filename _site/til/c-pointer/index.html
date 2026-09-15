@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>C 포인터 | jeongjinyeong’s homepage</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="C 포인터" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="우선 프로그래밍에서 메모리 주소와 값을 다루는 핵심 개념인 참조와 역참조에 대해 간략히 용어를 정리하고 시작하자." />
+<meta property="og:description" content="우선 프로그래밍에서 메모리 주소와 값을 다루는 핵심 개념인 참조와 역참조에 대해 간략히 용어를 정리하고 시작하자." />
+<link rel="canonical" href="http://localhost:4000/til/c-pointer/" />
+<meta property="og:url" content="http://localhost:4000/til/c-pointer/" />
+<meta property="og:site_name" content="jeongjinyeong’s homepage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-09-13T00:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="C 포인터" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-09-13T00:00:00+09:00","datePublished":"2026-09-13T00:00:00+09:00","description":"우선 프로그래밍에서 메모리 주소와 값을 다루는 핵심 개념인 참조와 역참조에 대해 간략히 용어를 정리하고 시작하자.","headline":"C 포인터","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/til/c-pointer/"},"url":"http://localhost:4000/til/c-pointer/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" as="style" crossorigin
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css?v=efa371b00483e4416e41c2296af57a121f4c7f47">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper subpage">
+      <header>
+        <h1><a href="http://localhost:4000/">jeongjinyeong's homepage</a></h1>
+
+        
+
+        <p></p>
+
+        
+      </header>
+      <section>
+        <small>2026-09-13</small>
+<h1>C 포인터</h1>
+
+
+
+
+<p>우선 프로그래밍에서 메모리 주소와 값을 다루는 핵심 개념인 참조와 역참조에 대해 간략히 용어를 정리하고 시작하자.</p>
+
+<blockquote>
+  <p><strong>참조 (Reference)</strong></p>
+  <ul>
+    <li>정의: 변수가 가진 값이 아니라, 변수의 메모리 주소를 가리키거나 얻는 것이다.</li>
+    <li>설명: C언어 등에서는 주소 연산자(<code class="language-plaintext highlighter-rouge">&amp;</code>)를 사용해 특정 변수의 위치(주소)를 찾아낸다.</li>
+    <li>예시: <code class="language-plaintext highlighter-rouge">int* p = &amp;a;</code>는 변수 <code class="language-plaintext highlighter-rouge">a</code>의 주소를 <code class="language-plaintext highlighter-rouge">p</code>에 저장하여 <code class="language-plaintext highlighter-rouge">a</code>를 참조하는 것이다.</li>
+  </ul>
+
+  <p><strong>역참조 (Dereference)</strong></p>
+  <ul>
+    <li>정의: 메모리 주소를 통해 그 주소에 들어있는 실제 값에 접근하는 것이다.</li>
+    <li>설명: 간접 참조 연산자(<code class="language-plaintext highlighter-rouge">*</code>)를 사용해 주소를 타고 들어가 저장된 값을 읽거나 수정한다.</li>
+    <li>예시: <code class="language-plaintext highlighter-rouge">*p = 10;</code>은 <code class="language-plaintext highlighter-rouge">p</code>가 가리키는 주소로 찾아가 그곳의 값을 10으로 바꾸는 역참조 과정이다.</li>
+  </ul>
+</blockquote>
+
+<p>포인터를 설명하기 전에 용어 정리를 하는데 예시에서부터 벌써 <code class="language-plaintext highlighter-rouge">*</code> / <code class="language-plaintext highlighter-rouge">&amp;</code> 표현이 나와서 당황스럽긴 하지만, 참조는 변수의 메모리 주소를 저장하는 것이고 역참조는 그 주소에 들어있는 실제 값에 접근하는 것이다.</p>
+
+<h2 id="asterisk와-ampersand">Asterisk(<code class="language-plaintext highlighter-rouge">*</code>)와 Ampersand(<code class="language-plaintext highlighter-rouge">&amp;</code>)</h2>
+
+<p>나온 김에 해당 기호들에 대해서도 설명하자면, C언어에서 Asterisk(<code class="language-plaintext highlighter-rouge">*</code>)는 역참조를 하겠다는 것이고 Ampersand(<code class="language-plaintext highlighter-rouge">&amp;</code>)는 참조하겠다는 것을 의미한다.</p>
+
+<p>그러니까 <code class="language-plaintext highlighter-rouge">*</code>는 변수에 저장된 주소가 가리키는 곳의 값을 조작하고 싶을 때, <code class="language-plaintext highlighter-rouge">&amp;</code>는 대상의 주소를 알고 싶을 때 사용한다.</p>
+
+<h2 id="포인터-변수">포인터 변수</h2>
+
+<p>포인터 변수란 주소값을 담기 위한 변수를 말한다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="o">*</span><span class="n">num</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>포인터 변수는 이처럼 자료형에 <code class="language-plaintext highlighter-rouge">*</code>를 붙여 선언한다. 해당 코드는 정수 데이터가 저장된 주소를 저장하기 위한 변수 <code class="language-plaintext highlighter-rouge">num</code>을 선언하면서 <code class="language-plaintext highlighter-rouge">NULL</code>로 초기화한 것이다.</p>
+
+<p>이해하기 어렵다면 나눠서 생각해보자. 설명의 편의를 위해 64비트 운영체제 x86-64를 기준으로 설명하겠다.</p>
+
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">num</code>에는 주소가 저장된다.</strong> 메모리는 바이트마다 주소가 매겨져 있고, x86-64에서 그 주소는 8바이트(64비트) 값이다. <code class="language-plaintext highlighter-rouge">num</code>은 그런 주소값 하나를 저장하는 8바이트 크기의 변수이다.</li>
+  <li><strong>해당 주소에는 정수 데이터가 담겨있다.</strong> 메모리에서 <code class="language-plaintext highlighter-rouge">num</code>이 저장하고 있는 주소의 데이터를 <code class="language-plaintext highlighter-rouge">int</code>형으로 사용하겠다는 의미이다.</li>
+</ol>
+
+<p>C언어에서 포인터를 사용하면 가장 자주 보게 되는 형태이다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">num</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>선언문의 <code class="language-plaintext highlighter-rouge">*</code>는 ‘이 변수는 포인터다’라는 타입 표기이고, 식에서의 <code class="language-plaintext highlighter-rouge">*</code>는 역참조 연산자다. <code class="language-plaintext highlighter-rouge">int *num = &amp;a;</code>는 선언(<code class="language-plaintext highlighter-rouge">int *num</code>)에 초기값(<code class="language-plaintext highlighter-rouge">&amp;a</code>)을 준 것이지 <code class="language-plaintext highlighter-rouge">*num</code>에 <code class="language-plaintext highlighter-rouge">&amp;a</code>를 대입한 것이 아니다.</p>
+
+<p>그렇다면 왜 <code class="language-plaintext highlighter-rouge">int* num</code>이나 <code class="language-plaintext highlighter-rouge">int * num</code>처럼 쓰지 않고 굳이 변수명에 <code class="language-plaintext highlighter-rouge">*</code>를 붙이는 이유가 뭘까?</p>
+
+<p>사실 C 컴파일러는 <code class="language-plaintext highlighter-rouge">*</code> 앞뒤의 공백을 무시하므로 <code class="language-plaintext highlighter-rouge">int* num</code>, <code class="language-plaintext highlighter-rouge">int * num</code>, <code class="language-plaintext highlighter-rouge">int *num</code> 세 가지는 완전히 같은 선언이다. 그럼에도 C 문법에서 <code class="language-plaintext highlighter-rouge">*</code>가 타입 이름이 아닌 선언되는 이름 쪽에 붙는 것이 관례이다. 그 이유는 한 줄에 여러 변수를 선언할 때 드러난다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>   <span class="c1">// a, b 둘 다 포인터처럼 보이지만 a는 int *, b는 int</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">*</span><span class="n">b</span><span class="p">;</span>  <span class="c1">// a, b 둘 다 포인터 - *가 이름에 붙는다는 걸 표기가 드러낸다</span>
+</code></pre></div></div>
+
+<p>문법적으로도 ‘역참조(<code class="language-plaintext highlighter-rouge">*</code>)하면 해당 자료형이다’라는 의미이기 때문에 이름에 붙는 것이 자연스럽다.</p>
+
+<p>함수도 마찬가지다. <code class="language-plaintext highlighter-rouge">node *find()</code>는 <code class="language-plaintext highlighter-rouge">find()</code>를 호출하고 반환값을 역참조한 것이 <code class="language-plaintext highlighter-rouge">node</code>라는 의미로, <code class="language-plaintext highlighter-rouge">*</code>가 <code class="language-plaintext highlighter-rouge">find</code>에 붙는 것이 문법적으로 정확한 그림이다.</p>
+
+<blockquote>
+  <p>C++에서는 타입 중심으로 읽는 것이 C++ 철학에 맞아 반대로 타입 쪽에 붙이는 것을 선호한다. ‘한 줄에 하나만 선언하면 함정이 없다’는 입장이라고 한다. 둘 다 유효하니 한 코드베이스 안에서 하나로 통일하는 것이 실질적 규칙이다.</p>
+</blockquote>
+
+<h2 id="포인터는-왜-필요한가">포인터는 왜 필요한가</h2>
+
+<p>이제 포인터에 대해서는 대충 알겠는데 그냥 값을 저장해서 쓰면 되지 이 짓을 왜 하나 싶을 수 있다. 주소를 필요로 하는 경우가 뭐가 있을까?</p>
+
+<p>첫째, 동적 할당을 하는 경우가 있다. 포인터도 모르겠는데 동적 할당은 뭔가 싶겠지만, 메모리를 고정된 만큼만 사용하지 않고 유동적으로 사용한다고 생각해보자. 예를 들어 필요한 메모리 크기를 실행 중에야 알 수 있는 경우(입력 개수만큼의 배열, 노드가 계속 추가되는 리스트) 컴파일 시 크기가 정해지는 일반 변수로는 담을 수 없다. 이렇게 크기가 유동적인 경우 힙 영역에 메모리를 동적으로 할당하고 할당된 메모리의 주소값으로 관리하기 때문에 포인터 변수가 필요하다.</p>
+
+<p>다음으로 call by reference를 위해서도 필요하다. C언어는 call by reference가 없고 매개변수로 값을 전달하기 때문에, call by reference처럼 동작하게 하려면 주소를 넘겨 주소의 데이터를 덮어 써야 한다.</p>
+
+<p>또 함수 포인터처럼 포인터가 담고 있는 주소를 바꿔가며 실행 시 어떤 함수를 호출할지 바꿀 수 있다.</p>
+
+<h2 id="그냥-정수로-저장하면-안-되나">그냥 정수로 저장하면 안 되나</h2>
+
+<p>결국 포인터에 담기는 것이 주소값이라면 그냥 정수로 저장하면 안 되나?</p>
+
+<p>된다. 크기만 맞으면 <code class="language-plaintext highlighter-rouge">unsigned long long</code> 같은 일반 정수형에도 담을 수는 있지만, <code class="language-plaintext highlighter-rouge">uintptr_t</code>는 플랫폼의 포인터 크기를 따르도록 표준이 보장하는 타입이라(32비트에서는 4바이트, 64비트에서는 8바이트) 이식성과 의도 표현을 위해 이쪽을 쓴다. <code class="language-plaintext highlighter-rouge">int</code>는 4바이트라 8바이트 주소가 잘리므로 불가하다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">uintptr_t</span> <span class="n">num</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uintptr_t</span><span class="p">)</span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>이와 같은 선언도 가능하다.</p>
+
+<p>그럼 왜 굳이 포인터 타입이 있는가. 포인터 타입을 사용하지 않으면 해당 주소에 어떤 데이터가 저장됐는지 알 수 없어서, 주소값을 저장하는 것은 가능하지만 참조할 때는 <code class="language-plaintext highlighter-rouge">uintptr_t num</code>에 대해 <code class="language-plaintext highlighter-rouge">*num</code>을 하게 되면 컴파일 오류가 난다.</p>
+
+<p>그래서 매번 타입 캐스팅(해당 변수가 어떤 자료형이다를 지정하는 것)을 해줘야 하기 때문에 코드가 길어지고, 캐스팅을 다른 타입으로 잘못 쓰더라도 컴파일러가 잡아주지 않아 에러 또는 조용한 에러가 발생할 수 있다. 코드를 읽는 사람도 무엇의 주소인지 매번 추적해야 하므로 비효율적이다.</p>
+
+<p>이상으로 포인터 변수에 대해 알아봤다.</p>
+
+
+<hr>
+<p class="postscript"><small>부족한 내용이나 잘못된 정보가 있다면 <a href="mailto:jeong.jinyeong95@gmail.com">jeong.jinyeong95@gmail.com</a>으로 연락 바랍니다.</small></p>
+
+
+
+      </section>
+      <footer>
+      </footer>
+    </div>
+  </body>
+</html>

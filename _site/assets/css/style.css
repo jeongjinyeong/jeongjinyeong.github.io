@@ -1,0 +1,423 @@
+@charset "UTF-8";
+@font-face { font-family: 'Noto Sans'; font-weight: 400; font-style: normal; src: url("../fonts/Noto-Sans-regular/Noto-Sans-regular.eot"); src: url("../fonts/Noto-Sans-regular/Noto-Sans-regular.eot?#iefix") format("embedded-opentype"), local("Noto Sans"), local("Noto-Sans-regular"), url("../fonts/Noto-Sans-regular/Noto-Sans-regular.woff2") format("woff2"), url("../fonts/Noto-Sans-regular/Noto-Sans-regular.woff") format("woff"), url("../fonts/Noto-Sans-regular/Noto-Sans-regular.ttf") format("truetype"), url("../fonts/Noto-Sans-regular/Noto-Sans-regular.svg#NotoSans") format("svg"); }
+@font-face { font-family: 'Noto Sans'; font-weight: 700; font-style: normal; src: url("../fonts/Noto-Sans-700/Noto-Sans-700.eot"); src: url("../fonts/Noto-Sans-700/Noto-Sans-700.eot?#iefix") format("embedded-opentype"), local("Noto Sans Bold"), local("Noto-Sans-700"), url("../fonts/Noto-Sans-700/Noto-Sans-700.woff2") format("woff2"), url("../fonts/Noto-Sans-700/Noto-Sans-700.woff") format("woff"), url("../fonts/Noto-Sans-700/Noto-Sans-700.ttf") format("truetype"), url("../fonts/Noto-Sans-700/Noto-Sans-700.svg#NotoSans") format("svg"); }
+@font-face { font-family: 'Noto Sans'; font-weight: 400; font-style: italic; src: url("../fonts/Noto-Sans-italic/Noto-Sans-italic.eot"); src: url("../fonts/Noto-Sans-italic/Noto-Sans-italic.eot?#iefix") format("embedded-opentype"), local("Noto Sans Italic"), local("Noto-Sans-italic"), url("../fonts/Noto-Sans-italic/Noto-Sans-italic.woff2") format("woff2"), url("../fonts/Noto-Sans-italic/Noto-Sans-italic.woff") format("woff"), url("../fonts/Noto-Sans-italic/Noto-Sans-italic.ttf") format("truetype"), url("../fonts/Noto-Sans-italic/Noto-Sans-italic.svg#NotoSans") format("svg"); }
+@font-face { font-family: 'Noto Sans'; font-weight: 700; font-style: italic; src: url("../fonts/Noto-Sans-700italic/Noto-Sans-700italic.eot"); src: url("../fonts/Noto-Sans-700italic/Noto-Sans-700italic.eot?#iefix") format("embedded-opentype"), local("Noto Sans Bold Italic"), local("Noto-Sans-700italic"), url("../fonts/Noto-Sans-700italic/Noto-Sans-700italic.woff2") format("woff2"), url("../fonts/Noto-Sans-700italic/Noto-Sans-700italic.woff") format("woff"), url("../fonts/Noto-Sans-700italic/Noto-Sans-700italic.ttf") format("truetype"), url("../fonts/Noto-Sans-700italic/Noto-Sans-700italic.svg#NotoSans") format("svg"); }
+.highlight table td { padding: 5px; }
+
+.highlight table pre { margin: 0; }
+
+.highlight .cm { color: #999988; font-style: italic; }
+
+.highlight .cp { color: #999999; font-weight: bold; }
+
+.highlight .c1 { color: #999988; font-style: italic; }
+
+.highlight .cs { color: #999999; font-weight: bold; font-style: italic; }
+
+.highlight .c, .highlight .cd { color: #999988; font-style: italic; }
+
+.highlight .err { color: #a61717; background-color: #e3d2d2; }
+
+.highlight .gd { color: #000000; background-color: #ffdddd; }
+
+.highlight .ge { color: #000000; font-style: italic; }
+
+.highlight .gr { color: #aa0000; }
+
+.highlight .gh { color: #999999; }
+
+.highlight .gi { color: #000000; background-color: #ddffdd; }
+
+.highlight .go { color: #888888; }
+
+.highlight .gp { color: #555555; }
+
+.highlight .gs { font-weight: bold; }
+
+.highlight .gu { color: #aaaaaa; }
+
+.highlight .gt { color: #aa0000; }
+
+.highlight .kc { color: #000000; font-weight: bold; }
+
+.highlight .kd { color: #000000; font-weight: bold; }
+
+.highlight .kn { color: #000000; font-weight: bold; }
+
+.highlight .kp { color: #000000; font-weight: bold; }
+
+.highlight .kr { color: #000000; font-weight: bold; }
+
+.highlight .kt { color: #445588; font-weight: bold; }
+
+.highlight .k, .highlight .kv { color: #000000; font-weight: bold; }
+
+.highlight .mf { color: #009999; }
+
+.highlight .mh { color: #009999; }
+
+.highlight .il { color: #009999; }
+
+.highlight .mi { color: #009999; }
+
+.highlight .mo { color: #009999; }
+
+.highlight .m, .highlight .mb, .highlight .mx { color: #009999; }
+
+.highlight .sb { color: #d14; }
+
+.highlight .sc { color: #d14; }
+
+.highlight .sd { color: #d14; }
+
+.highlight .s2 { color: #d14; }
+
+.highlight .se { color: #d14; }
+
+.highlight .sh { color: #d14; }
+
+.highlight .si { color: #d14; }
+
+.highlight .sx { color: #d14; }
+
+.highlight .sr { color: #009926; }
+
+.highlight .s1 { color: #d14; }
+
+.highlight .ss { color: #990073; }
+
+.highlight .s { color: #d14; }
+
+.highlight .na { color: #008080; }
+
+.highlight .bp { color: #999999; }
+
+.highlight .nb { color: #0086B3; }
+
+.highlight .nc { color: #445588; font-weight: bold; }
+
+.highlight .no { color: #008080; }
+
+.highlight .nd { color: #3c5d5d; font-weight: bold; }
+
+.highlight .ni { color: #800080; }
+
+.highlight .ne { color: #990000; font-weight: bold; }
+
+.highlight .nf { color: #990000; font-weight: bold; }
+
+.highlight .nl { color: #990000; font-weight: bold; }
+
+.highlight .nn { color: #555555; }
+
+.highlight .nt { color: #000080; }
+
+.highlight .vc { color: #008080; }
+
+.highlight .vg { color: #008080; }
+
+.highlight .vi { color: #008080; }
+
+.highlight .nv { color: #008080; }
+
+.highlight .ow { color: #000000; font-weight: bold; }
+
+.highlight .o { color: #000000; font-weight: bold; }
+
+.highlight .w { color: #bbbbbb; }
+
+.highlight { background-color: #f8f8f8; }
+
+body { background-color: #fff; padding: 50px; font: 14px/1.5 "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; color: #727272; font-weight: 400; }
+
+h1, h2, h3, h4, h5, h6 { color: #222; margin: 0 0 20px; }
+
+p, ul, ol, table, pre, dl { margin: 0 0 20px; }
+
+h1, h2, h3 { line-height: 1.1; }
+
+h1 { font-size: 28px; }
+
+h2 { color: #393939; }
+
+h3, h4, h5, h6 { color: #494949; }
+
+a { color: #267CB9; text-decoration: none; }
+
+a:hover, a:focus { color: #069; font-weight: bold; }
+
+a small { font-size: 11px; color: #777; margin-top: -0.3em; display: block; }
+
+a:hover small { color: #777; }
+
+.wrapper { width: 860px; margin: 0 auto; }
+
+blockquote { border-left: 1px solid #e5e5e5; margin: 0; padding: 0 0 0 20px; font-style: italic; }
+
+code, pre { font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, Consolas, Liberation Mono, DejaVu Sans Mono, Courier New, monospace; color: #333; }
+
+pre { padding: 8px 15px; background: #f8f8f8; border-radius: 5px; border: 1px solid #e5e5e5; overflow-x: auto; }
+
+table { width: 100%; border-collapse: collapse; }
+
+th, td { text-align: left; padding: 5px 10px; border-bottom: 1px solid #e5e5e5; }
+
+dt { color: #444; font-weight: 700; }
+
+th { color: #444; }
+
+img { max-width: 100%; }
+
+kbd { background-color: #fafbfc; border: 1px solid #c6cbd1; border-bottom-color: #959da5; border-radius: 3px; box-shadow: inset 0 -1px 0 #959da5; color: #444d56; display: inline-block; font-size: 11px; line-height: 10px; padding: 3px 5px; vertical-align: middle; }
+
+header { width: 270px; float: left; position: fixed; -webkit-font-smoothing: subpixel-antialiased; }
+
+ul.downloads { list-style: none; height: 40px; padding: 0; background: #f4f4f4; border-radius: 5px; border: 1px solid #e0e0e0; width: 270px; }
+
+.downloads li { width: 89px; float: left; border-right: 1px solid #e0e0e0; height: 40px; }
+
+.downloads li:first-child a { border-radius: 5px 0 0 5px; }
+
+.downloads li:last-child a { border-radius: 0 5px 5px 0; }
+
+.downloads a { line-height: 1; font-size: 11px; color: #676767; display: block; text-align: center; padding-top: 6px; height: 34px; }
+
+.downloads a:hover, .downloads a:focus { color: #675C5C; font-weight: bold; }
+
+.downloads ul a:active { background-color: #f0f0f0; }
+
+strong { color: #222; font-weight: 700; }
+
+.downloads li + li + li { border-right: none; width: 89px; }
+
+.downloads a strong { font-size: 14px; display: block; color: #222; }
+
+section { width: 500px; float: right; padding-bottom: 50px; }
+
+small { font-size: 11px; }
+
+hr { border: 0; background: #e5e5e5; height: 1px; margin: 0 0 20px; }
+
+footer { width: 270px; float: left; position: fixed; bottom: 50px; -webkit-font-smoothing: subpixel-antialiased; }
+
+@media print, screen and (max-width: 960px) { div.wrapper { width: auto; margin: 0; }
+  header, section, footer { float: none; position: static; width: auto; }
+  header { padding-right: 320px; }
+  section { border: 1px solid #e5e5e5; border-width: 1px 0; padding: 20px 0; margin: 0 0 20px; }
+  header a small { display: inline; }
+  header ul { position: absolute; right: 50px; top: 52px; } }
+@media print, screen and (max-width: 720px) { body { word-wrap: break-word; }
+  header { padding: 0; }
+  header ul, header p.view { position: static; }
+  pre, code { word-wrap: normal; } }
+@media print, screen and (max-width: 480px) { body { padding: 15px; }
+  .downloads { width: 99%; }
+  .downloads li, .downloads li + li + li { width: 33%; } }
+@media print { body { padding: 0.4in; font-size: 12pt; color: #444; } }
+.highlight table td { padding: 5px; }
+
+.highlight table pre { margin: 0; }
+
+.highlight .gh { color: #999999; }
+
+.highlight .sr { color: #f6aa11; }
+
+.highlight .go { color: #888888; }
+
+.highlight .gp { color: #555555; }
+
+.highlight .gu { color: #aaaaaa; }
+
+.highlight .nb { color: #f6aa11; }
+
+.highlight .cm { color: #a8a294; }
+
+.highlight .cp { color: #a8a294; }
+
+.highlight .c1 { color: #a8a294; }
+
+.highlight .cs { color: #a8a294; }
+
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf { color: #a8a294; }
+
+.highlight .err { color: #960050; }
+
+.highlight .gr { color: #960050; }
+
+.highlight .gt { color: #960050; }
+
+.highlight .gd { color: #49483e; }
+
+.highlight .gi { color: #49483e; }
+
+.highlight .ge { color: #49483e; }
+
+.highlight .kc { color: #66d9ef; }
+
+.highlight .kd { color: #66d9ef; }
+
+.highlight .kr { color: #66d9ef; }
+
+.highlight .no { color: #66d9ef; }
+
+.highlight .kt { color: #66d9ef; }
+
+.highlight .mf { color: #ae81ff; }
+
+.highlight .mh { color: #ae81ff; }
+
+.highlight .il { color: #ae81ff; }
+
+.highlight .mi { color: #ae81ff; }
+
+.highlight .mo { color: #ae81ff; }
+
+.highlight .m, .highlight .mb, .highlight .mx { color: #ae81ff; }
+
+.highlight .sc { color: #ae81ff; }
+
+.highlight .se { color: #ae81ff; }
+
+.highlight .ss { color: #ae81ff; }
+
+.highlight .sd { color: #e6db74; }
+
+.highlight .s2 { color: #e6db74; }
+
+.highlight .sb { color: #e6db74; }
+
+.highlight .sh { color: #e6db74; }
+
+.highlight .si { color: #e6db74; }
+
+.highlight .sx { color: #e6db74; }
+
+.highlight .s1 { color: #e6db74; }
+
+.highlight .s, .highlight .sa, .highlight .dl { color: #e6db74; }
+
+.highlight .na { color: #a6e22e; }
+
+.highlight .nc { color: #a6e22e; }
+
+.highlight .nd { color: #a6e22e; }
+
+.highlight .ne { color: #a6e22e; }
+
+.highlight .nf, .highlight .fm { color: #a6e22e; }
+
+.highlight .vc { color: #ffffff; background-color: #272822; }
+
+.highlight .nn { color: #ffffff; background-color: #272822; }
+
+.highlight .nl { color: #ffffff; background-color: #272822; }
+
+.highlight .ni { color: #ffffff; background-color: #272822; }
+
+.highlight .bp { color: #ffffff; background-color: #272822; }
+
+.highlight .vg { color: #ffffff; background-color: #272822; }
+
+.highlight .vi { color: #ffffff; background-color: #272822; }
+
+.highlight .nv, .highlight .vm { color: #ffffff; background-color: #272822; }
+
+.highlight .w { color: #ffffff; background-color: #272822; }
+
+.highlight { color: #ffffff; background-color: #272822; }
+
+.highlight .n, .highlight .py, .highlight .nx { color: #ffffff; background-color: #272822; }
+
+.highlight .ow { color: #f92672; }
+
+.highlight .nt { color: #f92672; }
+
+.highlight .k, .highlight .kv { color: #f92672; }
+
+.highlight .kn { color: #f92672; }
+
+.highlight .kp { color: #f92672; }
+
+.highlight .o { color: #f92672; }
+
+/* ===== 색상 토큰 ===== */
+:root { --bg: #1c1c1c; --fg: #e8e6e3; --fg-dim: #b5b0a8; --border: #3a3a3a; --code-fg: #e0c184; --code-bg: #2e2a24; --block-bg: #232323; --link: #9ab8d8; }
+
+/* ===== 기본 ===== */
+body { background: var(--bg); color: var(--fg); font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; font-size: 17px; line-height: 1.85; letter-spacing: -0.003em; -webkit-font-smoothing: antialiased; }
+
+a { color: var(--link); }
+
+a:hover { color: #c5d9ef; }
+
+hr { border: none; border-top: 1px solid var(--border); }
+
+li { margin: 0.35em 0; }
+
+blockquote { border-left: 3px solid var(--border); color: var(--fg-dim); padding-left: 1em; margin-left: 0; }
+
+/* ===== 제목 ===== */
+h1, h2, h3, h4, h5, h6 { color: var(--fg); font-weight: 700; letter-spacing: -0.02em; line-height: 1.4; }
+
+h1 { font-size: 2em; margin: 1.6em 0 0.6em; }
+
+h2 { font-size: 1.5em; margin: 2.2em 0 0.8em; padding-bottom: 0.4em; border-bottom: 1px solid var(--border); }
+
+h3 { font-size: 1.2em; margin: 1.8em 0 0.6em; }
+
+/* ===== 테마 잔여 색 정리 ===== */
+p, li, dt, dd, caption, figcaption { color: var(--fg); }
+
+strong, b { color: #ffffff; font-weight: 700; }
+
+em, i { color: var(--fg); }
+
+small { color: var(--fg-dim); }
+
+header h1, header h2, header p { color: var(--fg); }
+
+footer, footer a { color: var(--fg-dim); }
+
+/* 주석을 밝게 — rouge 테마 값 덮어쓰기 */
+.highlight .c, .highlight .c1, .highlight .cm, .highlight .cs, .highlight .cp, .highlight .ch, .highlight .cd, .highlight .cpf { color: #a8a294; }
+
+/* ===== 레이아웃 ===== */
+.wrapper.subpage { width: auto; max-width: 800px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; }
+.wrapper.subpage header { float: none; position: static; width: auto; margin-bottom: 30px; }
+.wrapper.subpage header h1 { font-size: 1.3em; margin-bottom: 0; border-bottom: none; }
+.wrapper.subpage header p { display: none; }
+.wrapper.subpage section, .wrapper.subpage footer { float: none; position: static; width: auto; }
+
+.postscript { color: var(--fg-dim); font-size: 0.85em; }
+
+/* ===== 인라인 코드 ===== */
+code { font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace; font-size: 0.88em; color: var(--code-fg); background: var(--code-bg); padding: 0.15em 0.4em; border-radius: 4px; }
+
+/* ===== 코드 블록 ===== */
+pre, div.highlight { background: var(--block-bg); border: 1px solid var(--border); border-radius: 6px; padding: 1em 1.1em; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 0.86em; line-height: 1.6; }
+
+/* 중첩 시 테두리·패딩 이중 적용 방지 */
+div.highlight pre { background: none; border: none; padding: 0; margin: 0; overflow: visible; }
+
+pre code, .highlight code { background: none; padding: 0 1.1em 0 0; white-space: pre; }
+
+/* rouge 테마가 토큰마다 칠하는 배경 무효화 */
+.highlight, .highlight * { background-color: transparent !important; }
+
+/* ===== 표 ===== */
+table { display: table; width: 100%; border-collapse: collapse; margin: 1.5em 0; font-size: 0.94em; table-layout: auto; }
+
+th, td { border: none; border-bottom: 1px solid var(--border); padding: 0.8em 1em 0.8em 0; text-align: left; vertical-align: top; color: var(--fg); }
+
+th { color: #ffffff; font-weight: 700; border-bottom: 2px solid var(--border); }
+
+/* 첫 열은 줄바꿈 금지 */
+th:first-child, td:first-child { white-space: nowrap; padding-right: 1.5em; }
+
+tr:nth-child(even) { background: none; }
+
+/* ===== 모바일 ===== */
+@media (max-width: 700px) { body { font-size: 16px; }
+  .wrapper.subpage { padding: 0 16px; }
+  table { display: block; overflow-x: auto; white-space: nowrap; } }

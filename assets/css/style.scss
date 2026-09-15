@@ -2,14 +2,84 @@
 ---
 
 @import "jekyll-theme-minimal";
+@import "rouge-dark";
 
-.post-content p {
-  text-indent: 1em;
+/* ===== 색상 토큰 ===== */
+:root {
+  --bg: #1c1c1c;
+  --fg: #e8e6e3;
+  --fg-dim: #b5b0a8;
+  --border: #3a3a3a;
+  --code-fg: #e0c184;
+  --code-bg: #2e2a24;
+  --block-bg: #232323;
+  --link: #9ab8d8;
 }
 
+/* ===== 기본 ===== */
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+               "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-size: 17px;
+  line-height: 1.85;
+  letter-spacing: -0.003em;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--link); }
+a:hover { color: #c5d9ef; }
+
+hr { border: none; border-top: 1px solid var(--border); }
+
+li { margin: 0.35em 0; }
+
+blockquote {
+  border-left: 3px solid var(--border);
+  color: var(--fg-dim);
+  padding-left: 1em;
+  margin-left: 0;
+}
+
+/* ===== 제목 ===== */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--fg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+}
+h1 { font-size: 2em;   margin: 1.6em 0 0.6em; }
+h2 { font-size: 1.5em; margin: 2.2em 0 0.8em; padding-bottom: 0.4em; border-bottom: 1px solid var(--border); }
+h3 { font-size: 1.2em; margin: 1.8em 0 0.6em; }
+
+/* ===== 테마 잔여 색 정리 ===== */
+p, li, dt, dd, caption, figcaption { color: var(--fg); }
+strong, b { color: #ffffff; font-weight: 700; }
+em, i { color: var(--fg); }
+small { color: var(--fg-dim); }
+header h1, header h2, header p { color: var(--fg); }
+footer, footer a { color: var(--fg-dim); }
+
+/* 주석을 밝게 — rouge 테마 값 덮어쓰기 */
+.highlight .c,
+.highlight .c1,
+.highlight .cm,
+.highlight .cs,
+.highlight .cp,
+.highlight .ch,
+.highlight .cd,
+.highlight .cpf {
+  color: #a8a294;
+}
+
+/* ===== 레이아웃 ===== */
 .wrapper.subpage {
   width: auto;
-  max-width: 720px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
 
   header {
     float: none;
@@ -18,19 +88,14 @@
     margin-bottom: 30px;
 
     h1 {
-      font-size: 1.3em;   // 상단 헤더용으로 축소
+      font-size: 1.3em;
       margin-bottom: 0;
+      border-bottom: none;
     }
-    p { display: none; }  // description도 서브페이지에선 숨김 (원하면 이 줄 삭제)
+    p { display: none; }
   }
 
-  section {
-    float: none;
-    position: static;
-    width: auto;
-  }
-
-  footer {
+  section, footer {
     float: none;
     position: static;
     width: auto;
@@ -38,20 +103,92 @@
 }
 
 .postscript {
-  color: #888;
+  color: var(--fg-dim);
   font-size: 0.85em;
 }
 
-pre {
+/* ===== 인라인 코드 ===== */
+code {
+  font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  color: var(--code-fg);
+  background: var(--code-bg);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+
+/* ===== 코드 블록 ===== */
+pre, div.highlight {
+  background: var(--block-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1em 1.1em;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  font-size: 0.86em;
+  line-height: 1.6;
 }
 
-pre code {
-  white-space: pre;      /* 줄바꿈 없이 가로 스크롤 — 어셈블리 정렬 유지 */
+/* 중첩 시 테두리·패딩 이중 적용 방지 */
+div.highlight pre {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
 }
 
+pre code, .highlight code {
+  background: none;
+  padding: 0 1.1em 0 0;
+  white-space: pre;
+}
+
+/* rouge 테마가 토큰마다 칠하는 배경 무효화 */
+.highlight, .highlight * { background-color: transparent !important; }
+
+/* ===== 표 ===== */
 table {
-  display: block;
-  overflow-x: auto;      /* 레지스터 표도 넓어서 같은 처리 */
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.94em;
+  table-layout: auto;
+}
+
+th, td {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  padding: 0.8em 1em 0.8em 0;
+  text-align: left;
+  vertical-align: top;
+  color: var(--fg);
+}
+
+th {
+  color: #ffffff;
+  font-weight: 700;
+  border-bottom: 2px solid var(--border);
+}
+
+/* 첫 열은 줄바꿈 금지 */
+th:first-child, td:first-child {
+  white-space: nowrap;
+  padding-right: 1.5em;
+}
+
+tr:nth-child(even) { background: none; }
+
+/* ===== 모바일 ===== */
+@media (max-width: 700px) {
+  body { font-size: 16px; }
+
+  .wrapper.subpage { padding: 0 16px; }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Python call by object reference — mutable/immutable과 Shallow Copy/Deep Copy | jeongjinyeong’s homepage</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Python call by object reference — mutable/immutable과 Shallow Copy/Deep Copy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Python call by object reference" />
+<meta property="og:description" content="Python call by object reference" />
+<link rel="canonical" href="http://localhost:4000/til/python-call-by-object-reference/" />
+<meta property="og:url" content="http://localhost:4000/til/python-call-by-object-reference/" />
+<meta property="og:site_name" content="jeongjinyeong’s homepage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-09-09T00:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Python call by object reference — mutable/immutable과 Shallow Copy/Deep Copy" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-09-09T00:00:00+09:00","datePublished":"2026-09-09T00:00:00+09:00","description":"Python call by object reference","headline":"Python call by object reference — mutable/immutable과 Shallow Copy/Deep Copy","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/til/python-call-by-object-reference/"},"url":"http://localhost:4000/til/python-call-by-object-reference/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" as="style" crossorigin
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css?v=efa371b00483e4416e41c2296af57a121f4c7f47">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper subpage">
+      <header>
+        <h1><a href="http://localhost:4000/">jeongjinyeong's homepage</a></h1>
+
+        
+
+        <p></p>
+
+        
+      </header>
+      <section>
+        <small>2026-09-09</small>
+<h1>Python call by object reference — mutable/immutable과 Shallow Copy/Deep Copy</h1>
+
+
+
+
+<h2 id="python-call-by-object-reference">Python call by object reference</h2>
+
+<p>python은 매개변수를 넘겨받아 처리할 때 call by object reference를 한다. 그렇다면 call by object reference가 뭘까?</p>
+
+<p>우선 python은 할당하는 모든 데이터를 힙 공간에 저장하고 해당 메모리 공간의 주소를 변수에 담는다. 그러니까 python 변수에 담기는 값은 모두 메모리 공간의 주소인 것이다.</p>
+
+<p>근데 나는 정수 <code class="language-plaintext highlighter-rouge">a</code>를 선언하고 그냥 <code class="language-plaintext highlighter-rouge">a</code>로 호출하면 값을 읽어오던데?</p>
+
+<p>변수 <code class="language-plaintext highlighter-rouge">a</code>를 평가하면 인터프리터가 이름 공간(dict 또는 지역 슬롯)에서 참조를 꺼내 객체를 얻고, <code class="language-plaintext highlighter-rouge">print(a)</code>나 <code class="language-plaintext highlighter-rouge">a + 1</code>은 객체의 메서드(<code class="language-plaintext highlighter-rouge">__str__</code>, <code class="language-plaintext highlighter-rouge">__add__</code>)를 호출한다. 즉 값을 읽는 것이 아니라 항상 객체를 얻고 그 객체에게 동작을 시키는 것이고, 정수의 값은 객체 안에 있다.</p>
+
+<p>그럼 python은 전부 주소값을 참조하니까 call by reference인가?</p>
+
+<p>아니다. python이 함수를 호출했을 때 호출자의 원본이 바뀌는지는 함수 안에서 그 객체에 무엇을 하느냐로 결정된다. 다만 immutable 객체는 제자리 변경이 불가능하므로 항상 call by value처럼 보이고, mutable 객체는 직접 변경하면 reference처럼, 재바인딩하면 value처럼 보인다.</p>
+
+<h2 id="mutable과-immutable">mutable과 immutable</h2>
+
+<p>mutable(가변) / immutable(불변)은 “생성 후 상태를 바꿀 수 있는가”라는 성질로, python에서 대표적인 mutable 객체는 list, dict, set이 있고 immutable 객체로는 int, float, str, tuple 등이 있다.</p>
+
+<h3 id="immutable-객체">immutable 객체</h3>
+
+<p>정수를 예시로 보자. <code class="language-plaintext highlighter-rouge">a = 1</code>이라는 변수에 대해 <code class="language-plaintext highlighter-rouge">a = 2</code>로 값을 변경하면, 실제로는 2라는 값을 갖는 객체를 메모리 공간에 새로 할당하고 기존 1이 담긴 객체 주소를 버리고 2가 담긴 객체를 가리키도록 한 것이다.</p>
+
+<p>이러한 이유로 immutable 객체에 대해서는 함수 내부에서 값을 변경하려고 해도, 변경하는 순간 매개변수 이름이 새로운 객체에 바인딩되고 호출자의 이름은 여전히 원래 객체를 가리키기 때문에, 매개변수로 전달된 기존 객체는 변하지 않고 기존 상태를 유지하게 된다.</p>
+
+<h3 id="mutable-객체">mutable 객체</h3>
+
+<p>리스트를 예시로 들면 리스트 변수도 마찬가지로 주소를 저장하고 있다. 다만 가변 객체의 경우 값을 변경할 수 있기 때문에, mutable 변수를 재바인딩하지 않는 한 해당 mutable 객체를 조작하면 변경된 내용이 기존 객체에 그대로 적용된다.</p>
+
+<p>사실 여기서 좀 더 자세히 생각해야 할 부분이 있는데, 리스트가 담고 있는 각 인덱스의 값들도 모두 객체의 주소라는 것이다. 따라서 리스트의 인덱스에 접근해 값을 변경한다는 것은 해당 인덱스에 저장된 주소를 바꾸는 것과 같다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
+    <span class="n">lst</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>     <span class="c1"># 객체 변경 → 호출자에 보임
+</span>    <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>        <span class="c1"># 칸의 주소 교체 → 호출자에 보임
+</span>    <span class="n">lst</span> <span class="o">=</span> <span class="p">[]</span>          <span class="c1"># 매개변수 재바인딩 → 호출자에 안 보임
+</span></code></pre></div></div>
+
+<h2 id="얕은-복사shallow-copy와-깊은-복사deep-copy">얕은 복사(Shallow Copy)와 깊은 복사(Deep Copy)</h2>
+
+<p>조금 더 나아가서 얕은 복사와 깊은 복사에 대해 알아보자. 가변 객체 리스트로 설명을 이어가겠다.</p>
+
+<h3 id="얕은-복사">얕은 복사</h3>
+
+<p>얕은 복사는 리스트를 복사할 때 껍데기만 바꾸는 것이다. 내부에 담고 있는 주소들은 그대로지만 리스트만 새로 할당하는 것을 얕은 복사라고 할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:]</span>
+</code></pre></div></div>
+
+<p>이것이 얕은 복사이다. 새로운 리스트에 <code class="language-plaintext highlighter-rouge">a</code>가 담고 있는 객체의 주소들을 옮겨 담은 것이다. <code class="language-plaintext highlighter-rouge">[1, 2]</code>, <code class="language-plaintext highlighter-rouge">[3, 4]</code>의 값을 담고 있는 각 인덱스에 담긴 주소는 그대로 옮겼기 때문에 같은 객체를 가리킨다는 것을 알 수 있다.</p>
+
+<p>같은 리스트 객체를 가리키는 대입과는 또 다르다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+</code></pre></div></div>
+
+<p>대입은 <code class="language-plaintext highlighter-rouge">b</code>가 <code class="language-plaintext highlighter-rouge">a</code>가 가리키는 객체의 주소를 갖는 것으로, 얕은 복사와는 차이가 있다.</p>
+
+<h3 id="깊은-복사">깊은 복사</h3>
+
+<p>그럼 깊은 복사는 무엇일까. 깊은 복사는 원본과 사본이 상태를 공유하지 않아서, 어느 한쪽을 어떻게 변경해도 다른 쪽이 영향받지 않도록 하는 것이다.</p>
+
+<p>깊은 복사는 <code class="language-plaintext highlighter-rouge">copy.deepcopy()</code>를 활용할 수도 있고, 아래와 같이 층마다 얕은 복사를 적용하는 방식으로도 가능하다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1차원 (원소가 immutable인 경우)
+</span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:]</span>
+
+<span class="c1"># 2차원
+</span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[:]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span>
+
+<span class="c1"># 3차원
+</span><span class="n">b</span> <span class="o">=</span> <span class="p">[[</span><span class="n">r</span><span class="p">[:]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">plane</span><span class="p">]</span> <span class="k">for</span> <span class="n">plane</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>코드를 보면서 그런 생각이 들 수 있다. 어!? 이렇게 해도 각 인덱스는 같은 메모리 주소를 갖게 되는 거 아닌가?</p>
+
+<p>맞다. 하지만 각 case의 차원을 고려했을 때 마지막 층의 원소는 immutable이라 변경이 불가능하고, 변경하는 순간 그 칸의 주소를 새 객체로 교체하기 때문에 원본에는 영향을 주지 않는다. 그래서 앞서 깊은 복사의 정의를 “모든 값들에 대해 새로운 객체를 할당하는 것”이 아닌 “원본과 사본이 상태를 공유하지 않아 어느 한쪽을 변경해도 다른 쪽이 영향받지 않도록 하는 것”이라고 한 이유이다.</p>
+
+<h2 id="결론">결론</h2>
+
+<p>python의 call by object reference의 동작에 대해 설명하다가 mutable/immutable 그리고 shallow copy/deep copy까지 오게 됐는데, 아무튼 이 과정을 설명하면서 결론이 도출됐다.</p>
+
+<blockquote>
+  <p>python은 항상 객체 참조를 넘기고, 호출자의 원본이 바뀌느냐는 함수 본문에서 그 참조로 무엇을 하느냐(직접 변경 / 재바인딩 / 복사본 작업)로 결정된다.</p>
+</blockquote>
+
+
+<hr>
+<p class="postscript"><small>부족한 내용이나 잘못된 정보가 있다면 <a href="mailto:jeong.jinyeong95@gmail.com">jeong.jinyeong95@gmail.com</a>으로 연락 바랍니다.</small></p>
+
+
+
+      </section>
+      <footer>
+      </footer>
+    </div>
+  </body>
+</html>
