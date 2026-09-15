@@ -41,3 +41,17 @@
   color: #888;
   font-size: 0.85em;
 }
+
+pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+pre code {
+  white-space: pre;      /* 줄바꿈 없이 가로 스크롤 — 어셈블리 정렬 유지 */
+}
+
+table {
+  display: block;
+  overflow-x: auto;      /* 레지스터 표도 넓어서 같은 처리 */
+}
