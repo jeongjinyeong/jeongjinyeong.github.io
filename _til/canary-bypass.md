@@ -83,7 +83,8 @@ int main(void) {
 
 우선 스택 프레임 구조를 파악하기 위해 `main` 함수의 어셈블리를 확인했다.
 
-[ARM64 어셈블리]({{ '/til/arm64-assembly/' | relative_url }})는 나도 친해져보려고 노력중이지만 확실히 익숙하진 않은 것 같다.
+{% assign target = site.til | where: "slug", "arm64-assembly-syntax" | first %}
+[ARM64 어셈블리]({{ target.url | relative_url }})는 나도 친해져보려고 노력중이지만 확실히 익숙하진 않은 것 같다.
 
 `sp`에 `#0x1d0`을 빼서 스택 프레임 공간을 할당하고 `sp+448`(`sp+0x1c0`) 위치에 `x29`(base pointer), `sp+0x1c8` 위치에 `x30`(ret addr)을 저장한다.
 
@@ -101,7 +102,7 @@ x0의 주소에서 가져온 값은 `__stack_chk_guard`라는 건데 그 값이 
 
 그렇다. 이 값이 스택 카나리인 것이다.
 
-그리고 `build_pascal`을 호출하기 전 매개변수 값들을 `x0`와 `x1`(`w1`)에 세팅하는데 `x0`는 `int *tri`에 해당하는 값으로 `tri`의 주소값으로 예상할 수 있는데 그 주소를 `sp+0x10`으로 하고 `int rows`에 해당하는 값으로 `x1`(`w1`)에 `0xe` 즉, `14`를 저장하고 있다.
+그리고 `build_pascal`을 호출하기 전 매개변수 값들을 `x0`와 `x1`(`w1`)에 세팅하는데 `x0`는 `int *tri`에 해당하는 값으로 `tri`의 주소값으로 예상할 수 있는데 그 주소를 `sp+0x10`으로 하고, `int rows`에 해당하는 값으로 `x1`(`w1`)에 `0xe` 즉, `14`를 저장하고 있다.
 
 이렇게 매개변수 세팅을 마치고 `build_pascal` 호출을 하게 된다.
 
